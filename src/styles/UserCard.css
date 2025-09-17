@@ -1,0 +1,22 @@
+.city {
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.status {
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.kherson {
+  color: green !important;
+}
+
+.kyiv {
+  color: rgb(117, 12, 238);
+}
+
+.offline{
+    color: #B22222;
+}
+.online{
+    color: #32CD32;
+}

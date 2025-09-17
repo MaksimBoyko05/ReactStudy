@@ -1,0 +1,9 @@
+.online {
+  color: green;
+  font-weight: bold;
+}
+
+.offline {
+  color: gray;
+  font-style: italic;
+}
