@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  background-image: url(../../public/back.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.formBlock {
+  width: 607px;
+  height: 765px;
+  background: #ffff;
+  flex-direction: column;
+  margin-top: 135px;
+  border-radius: 32px;
+  box-shadow: 0 4px 7px 5px rgba(0, 0, 0, 0.27);
+}
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.chooseblock {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 24px;
+  fill: #f8fafc;
+  border: 1.3px solid #dedede;
+  width: 390px;
+  height: 50px;
+  background: #f8fafc;
+}
+.choose-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 14px;
+  margin-top: 4px;
+  width: 165px;
+  height: 40px;
+  border: 1.3px solid #ecf0f6;
+  color: #1f5aee;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 600;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease;
+}
+.inactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 500;
+  color: #888484;
+  transition: all 0.5s ease;
+}
+.logo {
+  width: 216px;
+  height: 139px;
+  object-fit: contain;
+}
+.error {
+  color: #ff0000;
+}
+.formInput.input-error{
+  border: 2px solid red;
+   outline: none;
+}
+.disabledbtn{
+  background: red;
+}
+.formInput {
+  border-radius: 24px;
+  border: 2px solid #e7e8ea;
+  width: 405px;
+  height: 33px;
+}
+.labelEmail,
+.labelPass {
+  display: block;
+}
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 2em;
+}
+.sbmbutton {
+  width: 147px;
+  height: 37px;
+  background: #1F5AEE;
+  color: #FFFF;
+  border-radius: 30px;
+  border: 0px solid #000;
+  box-shadow: 3px 1px 6px 0 rgba(31, 90, 238, 0.46);
+}
