@@ -11,6 +11,7 @@ function LoginForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isFocused, setIsFocused] = useState({ email: false, password: false });
   const handleSubmit = (e) => {
     e.preventDefault();
     if (activeButton === "signup") {
@@ -58,46 +59,71 @@ function LoginForm() {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            <label className="labelEmail">Email</label>
-            <input
-              className={`formInput ${emailError ? "input-error" : ""}`}
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!regex.test(e.target.value)) {
-                  setEmailError("Невірний формат");
-                } else {
-                  setEmailError("");
-                }
-                console.log(emailError);
-              }}
-            />
-            {emailError && <p className="error">{emailError}</p>}
-            <label className="labelPass">Password</label>
-            <input
-              className={`formInput ${passwordError ? "input-error" : ""}`}
-              type={showPassword === true ? "text" : "password"}
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (e.target.value.length < 8) {
-                  setPasswordError("Пароль має бути від 8 символів");
-                } else {
-                  setPasswordError("");
-                }
-              }}
-            ></input>
+            <div
+              className={`input-group ${
+                email || isFocused.email ? "active" : ""
+              }`}
+            >
+              <label className="labelEmail">Email</label>
+              <input
+                className={`formInput ${
+                  !isFocused.email && emailError ? "input-error" : ""
+                }`}
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onFocus={() => {
+                  setIsFocused({ ...isFocused, email: true });
+                }}
+                onBlur={() => {
+                  setIsFocused({ ...isFocused, email: false });
+                  if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                    setEmailError("Невірний формат");
+                  } else {
+                    setEmailError("");
+                  }
+                }}
+              />
+              {!isFocused.email && emailError && email && (
+                <p className="error">{emailError}</p>
+              )}
+            </div>
+            <div
+              className={`input-group ${
+                password || isFocused.password ? "active" : ""
+              }`}
+            >
+              <label className="labelPass">Password</label>
+              <input
+                className={`formInput ${!isFocused.password && passwordError ? "input-error" : ""}`}
+                type={showPassword === true ? "text" : "password"}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                onFocus={() => setIsFocused({ ...isFocused, password: true })}
+                onBlur={() => {
+                  setIsFocused({ ...isFocused, password: false });
+                  if (password && password.length < 8) {
+                    setPasswordError("Пароль має бути від 8 символів");
+                  } else {
+                    setPasswordError("");
+                  }
+                }}
+              ></input>
+            </div>
             <button
-            type="button"
+              type="button"
               onClick={() =>
                 setShowPassword((prev) => (prev === false ? true : false))
               }
             >
               {showPassword === true ? "Hide" : "Show"}
             </button>
-            {passwordError && <p className="error">{passwordError}</p>}
+           {!isFocused.password && passwordError && password && <p className="error">{passwordError}</p>}
+
             {activeButton === "signup" && (
               <>
                 <label className="labelPass">Confirm Password</label>
