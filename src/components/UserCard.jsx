@@ -1,25 +1,25 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/UserCard.css";
-function UserCard({ name, age}) {
-  const [isKyiv, setIsKyiv] = useState(false);
-  const [isOnline, setIsOnline] = useState(false);
+function UserCard({users, toggleStatus}) {
+ const { id } = useParams(); // бере id з URL
+  const user = users.find((u) => u.id === Number(id));
+
+    if (!user) {
+    return <p>Користувача не знайдено</p>;
+  }
   
   return (
-    <div>
-      <h2>{name}</h2>
-      <p>Вік: {age}</p>
-      <p className={isKyiv ? "city kyiv" : "city kherson"}>
-        {isKyiv ? "Kyiv" : "Kherson"}
-      </p>
-      <button onClick={() => setIsKyiv(!isKyiv)}>Перемкнути місто</button>
-      <p>
-        Status: 
-        <span className={isOnline ? "status online" : "status offline"}>{isOnline ? "Online" : "Offline"}</span>
-
-        </p>
-      <button 
-        onClick={() => setIsOnline(!isOnline)}
-      >SetStatus</button>
+   <div>
+      <h2>{user.name}</h2>
+      <p>Статус: {user.status === "online" ? "🟢 Онлайн" : "🔴 Офлайн"}</p>
+      <button
+      onClick={() => {toggleStatus(user.id)
+      }}
+      >
+        Змінити статус</button>
+      <Link to="/users">Назад до списку</Link>
     </div>
   );
 }

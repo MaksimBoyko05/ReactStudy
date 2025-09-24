@@ -1,25 +1,15 @@
-import { useState } from "react";
-function UserList() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "Макс" },
-    { id: 2, name: "Артем" },
-    { id: 3, name: "Іван" },
-  ]);
-
-  const removeFirst = () => {
-    setUsers(users.slice(1)); // видаляємо першого
-  };
+import { Link } from "react-router-dom";
+function UserList({users}) {
 
   return (
     <div>
       <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <input type="text" defaultValue={user.name} />
+        {users.map((u) => (
+          <li key={u.id}>
+             <Link to={`/user-card/${u.id}`}>{u.name}</Link>
           </li>
         ))}
       </ul>
-      <button onClick={removeFirst}>Видалити першого</button>
     </div>
   );
 }
