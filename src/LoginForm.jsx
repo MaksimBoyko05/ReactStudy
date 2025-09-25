@@ -38,7 +38,10 @@ function LoginForm() {
   return (
     <div className="parent-container">
       <div className="formBlock">
-        <img className="logo" src={logo} alt="logo" />
+        <div className="logoDiv">
+          <img className="logo" src={logo} alt="logo" />
+        </div>
+        <h1 className="LogoText">Lysto</h1>
         <div className="formContainer">
           <div className="chooseblock">
             <div
@@ -97,7 +100,9 @@ function LoginForm() {
             >
               <label className="labelPass">Password</label>
               <input
-                className={`formInput ${!isFocused.password && passwordError ? "input-error" : ""}`}
+                className={`formInput ${
+                  !isFocused.password && passwordError ? "input-error" : ""
+                }`}
                 type={showPassword === true ? "text" : "password"}
                 value={password}
                 onChange={(e) => {
@@ -122,7 +127,9 @@ function LoginForm() {
             >
               {showPassword === true ? "Hide" : "Show"}
             </button>
-           {!isFocused.password && passwordError && password && <p className="error">{passwordError}</p>}
+            {!isFocused.password && passwordError && password && (
+              <p className="error">{passwordError}</p>
+            )}
 
             {activeButton === "signup" && (
               <>

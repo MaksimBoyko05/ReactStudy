@@ -20,8 +20,8 @@ body {
   margin: 0 auto;
 }
 .formBlock {
-  width: 607px;
-  height: 765px;
+  width: 507px;
+  height: 665px;
   background: #ffff;
   flex-direction: column;
   margin-top: 135px;
@@ -40,7 +40,7 @@ body {
   border-radius: 24px;
   fill: #f8fafc;
   border: 1.3px solid #dedede;
-  width: 390px;
+  width: 350px;
   height: 50px;
   background: #f8fafc;
 }
@@ -71,25 +71,47 @@ body {
   color: #888484;
   transition: all 0.5s ease;
 }
+.logoDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 .logo {
-  width: 216px;
-  height: 139px;
+  display: flex;
+  width: 250px;
+  height: 130px;
   object-fit: contain;
+}
+.LogoText {
+  display: block;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  font-family: "Titillium Web", sans-serif;
+  /* font-weight: ; */
+  justify-content: center;
+  color: rgba(26, 115, 232, 0.1);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 0 #1a73e8, 2px 2px 0 #0d47a1,
+    3px 3px 10px rgba(0, 0, 0, 0.3);
+  transform: perspective(300px) rotateX(10deg);
+}
+.LogoText h1 {
 }
 .error {
   color: #ff0000;
 }
-.formInput.input-error{
+.formInput.input-error {
   border: 2px solid red;
-   outline: none;
+  outline: none;
 }
-.disabledbtn{
+.disabledbtn {
   background: red;
 }
 .formInput {
   border-radius: 24px;
   border: 2px solid #e7e8ea;
-  width: 405px;
+  width: 350px;
   height: 33px;
 }
 .labelEmail,
@@ -106,8 +128,8 @@ body {
 .sbmbutton {
   width: 147px;
   height: 37px;
-  background: #1F5AEE;
-  color: #FFFF;
+  background: #1f5aee;
+  color: #ffff;
   border-radius: 30px;
   border: 0px solid #000;
   box-shadow: 3px 1px 6px 0 rgba(31, 90, 238, 0.46);
