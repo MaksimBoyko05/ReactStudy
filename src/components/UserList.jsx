@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddUserForm from './AddUserForm';
 
-function UserList({ users, onAddUser, onEditUser }) {
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
+function UserList() {
+const { users, onAddUser, onEditUser } = useContext(AppContext)
+
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState("");
   const [editStatus, setEditStatus] = useState("online");

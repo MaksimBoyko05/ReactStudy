@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function AddUserForm({ onAddUser }) {
+function AddUserForm({ addUser }) {
   const [name, setName] = useState("");
   const [status, setStatus] = useState("Online")
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
-      onAddUser(name, status);
+      addUser(name, status);
       setName("");
       setStatus("Online")
     }

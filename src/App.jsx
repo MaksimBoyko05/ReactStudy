@@ -6,35 +6,11 @@ import LoginForm from "./LoginForm";
 import ContactList from "./components/ContactList";
 import UserCard from "./components/UserCard";
 import Users from "./components/UserList";
+import { AppContextProvider } from "./context/AppContext";
 
 function App() {
-  const users = [
-    { id: 1, name: "Max", status: "online", isEditing: false },
-    { id: 2, name: "Bob", status: "offline", isEditing: false },
-    { id: 3, name: "Ivan", status: "online", isEditing: false },
-  ];
-  const [usersList, setUsers] = useState(users);
-  const toggleStatus = (id) => {
-    setUsers(
-      usersList.map((user) =>
-        user.id === id
-          ? { ...user, status: user.status === "online" ? "offline" : "online" }
-          : user
-      )
-    );
-  };
-
-  const addUser = (name, status) => {
-    const newUser = { id: Date.now(), name, status: status.toLowerCase() };
-    setUsers([...usersList, newUser]);
-  };
-const editUser = (id, newName, newStatus) => {
-  setUsers(usersList.map(u => 
-    u.id === id ? {...u, name: newName, status: newStatus} : u
-  ));
-};
-
   return (
+     <AppContextProvider>
     <Router>
       <nav>
         <Link to="/">ToDo</Link>
@@ -46,13 +22,14 @@ const editUser = (id, newName, newStatus) => {
         <Route path="/" element={<ToDo />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/contact" element={<ContactList />} />
-        <Route path="/users" element={<Users users={usersList} onAddUser={addUser} onEditUser={editUser} />} />
+        <Route path="/users" element={<Users/>} />
         <Route
           path="/user-card/:id"
-          element={<UserCard users={usersList} toggleStatus={toggleStatus} />}
+          element={<UserCard/>}
         />
       </Routes>
     </Router>
+    </AppContextProvider>
   );
 }
 
