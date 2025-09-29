@@ -1,0 +1,20 @@
+.usersWrap{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+flex-direction: row;
+}
+.userCards{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+     justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    background: #ffff;
+    border: 1px solid #585858;
+    width: 300px;
+    height: 100px;
+    border-radius: 12px;
+
+}

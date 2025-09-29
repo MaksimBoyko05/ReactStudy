@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AddUserForm from './AddUserForm';
+import AddUserForm from "./AddUserForm";
+import UserListAPI from "./UserListAPI";
+import Clock from "./Clock"
 
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 function UserList() {
-const { users, onAddUser, onEditUser } = useContext(AppContext)
+  const { users, onAddUser, onEditUser } = useContext(AppContext);
 
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState("");
@@ -22,7 +24,11 @@ const { users, onAddUser, onEditUser } = useContext(AppContext)
     onEditUser(id, editName, editStatus);
     setEditingId(null);
   };
-
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
   return (
     <div>
       <ul>
@@ -30,12 +36,12 @@ const { users, onAddUser, onEditUser } = useContext(AppContext)
           <li key={u.id}>
             {editingId === u.id ? (
               <>
-                <input 
-                  value={editName} 
-                  onChange={(e) => setEditName(e.target.value)} 
+                <input
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
                 />
-                <select 
-                  value={editStatus} 
+                <select
+                  value={editStatus}
                   onChange={(e) => setEditStatus(e.target.value)}
                 >
                   <option value="online">Online</option>
@@ -54,7 +60,9 @@ const { users, onAddUser, onEditUser } = useContext(AppContext)
           </li>
         ))}
       </ul>
-      <AddUserForm onAddUser={onAddUser}/>
+      <AddUserForm onAddUser={onAddUser} />
+      <UserListAPI/>
+      <Clock/>
     </div>
   );
 }
