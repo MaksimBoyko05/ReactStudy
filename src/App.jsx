@@ -6,29 +6,29 @@ import LoginForm from "./LoginForm";
 import ContactList from "./components/ContactList";
 import UserCard from "./components/UserCard";
 import Users from "./components/UserList";
+import AutoCounter from "./components/AutoCounter";
 import { AppContextProvider } from "./context/AppContext";
 
 function App() {
   return (
-     <AppContextProvider>
-    <Router>
-      <nav>
-        <Link to="/">ToDo</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/contact">Contacts</Link>
-        <Link to="/users">Users</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<ToDo />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/contact" element={<ContactList />} />
-        <Route path="/users" element={<Users/>} />
-        <Route
-          path="/user-card/:id"
-          element={<UserCard/>}
-        />
-      </Routes>
-    </Router>
+    <AppContextProvider>
+      <Router>
+        <nav>
+          <Link to="/">ToDo</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/contact">Contacts</Link>
+          <Link to="/users">Users</Link>
+          <Link to="/counter">Counter</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<ToDo />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/contact" element={<ContactList />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/user-card/:id" element={<UserCard />} />
+          <Route path="/counter" element={<AutoCounter />} />
+        </Routes>
+      </Router>
     </AppContextProvider>
   );
 }

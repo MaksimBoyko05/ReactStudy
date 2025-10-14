@@ -22,16 +22,19 @@ export function AppContextProvider({ children }) {
     const newUser = { id: Date.now(), name, status: status.toLowerCase() };
     setUsers([...usersList, newUser]);
   };
-const editUser = (id, newName, newStatus) => {
-  setUsers(usersList.map(u => 
-    u.id === id ? {...u, name: newName, status: newStatus} : u
-  ));
-};
-
-
+  const editUser = (id, newName, newStatus) => {
+    setUsers(
+      usersList.map((u) =>
+        u.id === id ? { ...u, name: newName, status: newStatus } : u
+      )
+    );
+  };
+  const [click, setClick] = useState(0);
   return (
-  <AppContext.Provider value={{ users, usersList, toggleStatus, addUser, editUser }}>
-    {children}
-  </AppContext.Provider>
+    <AppContext.Provider
+      value={{ users, usersList, toggleStatus, addUser, editUser, click, setClick }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 }
