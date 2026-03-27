@@ -1,36 +1,16 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./App.css";
-import { useState } from "react";
-import ToDo from "./components/ToDoList";
-import LoginForm from "./LoginForm";
-import ContactList from "./components/ContactList";
-import UserCard from "./components/UserCard";
-import Users from "./components/UserList";
-import AutoCounter from "./components/AutoCounter";
-import { AppContextProvider } from "./context/AppContext";
+import {useContext, useState} from 'react';
+import Navbar from './components/Navbar';
+import {ThemeContext, ThemeProvider} from "./context/ThemeContext";
+import Counter from "./components/Counter";
 
-function App() {
+export default function App() {
+const {theme} = useContext(ThemeContext)
+
   return (
-    <AppContextProvider>
-      <Router>
-        <nav>
-          <Link to="/">ToDo</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/contact">Contacts</Link>
-          <Link to="/users">Users</Link>
-          <Link to="/counter">Counter</Link>
-        </nav>
-        <Routes>
-          <Route path="/" element={<ToDo />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/contact" element={<ContactList />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user-card/:id" element={<UserCard />} />
-          <Route path="/counter" element={<AutoCounter />} />
-        </Routes>
-      </Router>
-    </AppContextProvider>
+    <div style={{ background: theme === 'light' ? '#fff' : '#333', height: '100vh' }}>
+      <Navbar />
+      <h1 style={{ color: theme === 'light' ? '#000' : '#fff' }}>Головна сторінка</h1>
+      <Counter/>
+    </div>
   );
 }
-
-export default App;
