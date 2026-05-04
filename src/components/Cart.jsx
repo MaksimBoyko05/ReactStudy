@@ -28,10 +28,13 @@ export default function Cart() {
 }
 
 async function syncCart(items) {
-  for (const item of items) {
+  const promises = items.map(async (item)=> {
     const result = await saveToDatabase(item);
     console.log(result);
+    return result;
   }
+)
+  const results = await Promise.all(promises)
 }
 
 return (
