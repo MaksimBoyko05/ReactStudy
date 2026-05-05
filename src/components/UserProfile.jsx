@@ -1,29 +1,37 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
-export default function UserProfile(){
+export default function UserProfile() {
   const [user, setUser] = useState([])
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("")
+  const users = {id: 1, name: "Max", role: "admin"}
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         setIsLoading(true)
-        const res = await fetch('https://jsonplac55eholder.typicode.com/users')
+        const res = await fetch('https://jsonplaceholder.typicode.com/users')
         const data = await res.json();
         setUser(data[0]);
-      }catch (err){
+      } catch (err) {
         console.error("Error fetching user", err)
         setErrorMessage(err.message)
-      }finally {
+      } finally {
         setIsLoading(false)
       }
     }
     fetchUser();
   }, []);
 
-  if(errorMessage) return <div>Error: {errorMessage}</div>
-  return(
+  // const adminUsers = useMemo(() => {
+  //   return   users.filter(user => user.role === "admin")
+  // }, [users])
+
+
+
+
+  if (errorMessage) return <div>Error: {errorMessage}</div>
+  return (
     <>
       <div>
         {!isLoading ? (
@@ -32,7 +40,7 @@ export default function UserProfile(){
               {user.name}
             </li>
           </ul>
-        ):(
+        ) : (
           <h3>Завантаження</h3>
         )}
       </div>

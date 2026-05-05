@@ -4,6 +4,7 @@ import {ThemeContext} from "./context/ThemeContext";
 import Counter from "./components/Counter";
 import Cart from "./components/Cart";
 import UserProfile from "./components/UserProfile";
+import FinanceMemo from "./components/FinanceMemo";
 
 export default function App() {
   const {theme} = useContext(ThemeContext)
@@ -14,6 +15,7 @@ export default function App() {
       <h1 style={{color: theme === 'light' ? '#000' : '#fff'}}>Головна сторінка</h1>
       <Cart/>
       <UserProfile/>
+      <FinanceMemo/>
     </div>
   );
 }
